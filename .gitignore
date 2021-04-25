@@ -1,0 +1,18 @@
+/*
+
+# Whitelisted directories
+!.github/
+!src/
+!static/
+
+# Whitelisted files
+!.gitignore
+!.pylintrc
+!LICENSE.md
+!py2app_setup.py
+!requirements.txt
+!rumps_app.py
+
+# To be ignored in all directories
+**/.DS_Store
+**/__pycache__

@@ -1,0 +1,5 @@
+{
+    "total_questions": ["Total questions asked:", 0],
+    "correct_answers": ["Correct answers given:", 0],
+    "incorrect_answers": ["Incorrect answers given:", 0]
+}

@@ -1,0 +1,19 @@
+name: Python CI
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: macos-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python 3.9
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.9
+    - name: Install dependencies
+      run: pip install -r requirements.txt
+    - name: Lint with pylint
+      run: pylint src py2app_setup.py rumps_app.py
+    - name: Test with pytest
+      run: pytest src/tests
