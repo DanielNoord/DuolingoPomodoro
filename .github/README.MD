@@ -1,3 +1,5 @@
+[![Python CI](https://github.com/DanielNoord/DuolingoPomodoro/actions/workflows/CI.yaml/badge.svg?branch=main&event=push)](https://github.com/DanielNoord/DuolingoPomodoro/actions/workflows/CI.yaml)
+
 # Duolingo Pomodoro
 A little menu-bar app for macOS that sends a notification which prompts the user to answer a question based on their vocabulary in duolingo.
 
