@@ -23,6 +23,7 @@ def test_file_present(mocker, settings):
     """Load if file is present"""
     mocker.patch("json.loads", return_value=settings)
     with patch("src.app_functions.settings.load_settings.open", mock_open()):
+        print("Tet")
         assert load_settings() == settings
 
 

@@ -11,7 +11,9 @@ from src.app_functions.menu.login_sequence import login
 from src.app_functions.menu.notification_prompt import notification_prompt
 from src.app_functions.notification_handler import notification_handler
 from src.app_functions.settings.load_settings import load_settings
+from src.app_functions.settings.save_settings import save_settings
 from src.app_functions.statistics.load_statistics import load_statistics
+from src.app_functions.statistics.save_statistics import save_statistics
 from src.app_functions.statistics.show_statistics import show_statistics
 from src.app_functions.update_menu import update_menu
 from src.app_functions.update_title import update_title_bar
@@ -77,7 +79,9 @@ class DuolingoPomodoroApp(rumps.App):  # pylint: disable=too-many-instance-attri
 
         # Loading settings and statistics
         self.settings = load_settings()
+        save_settings(self)
         self.statistics = load_statistics()
+        save_statistics(self)
 
         # Variables used in app
         self.logged_in = False
