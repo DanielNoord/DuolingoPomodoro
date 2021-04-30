@@ -52,6 +52,7 @@ def create_app():
                 "vocab_overview": [
                     {
                         "word_string": "a",
+                        "strength_bars": 4,
                     }
                 ]
             }
@@ -81,6 +82,4 @@ def test_get_vocab(mocker, basic_app):
     Very basic test, might need expanding."""
     mocker.patch("src.duo.get_duolingo_data.save_settings")
     with patch("src.duo.get_duolingo_data.open", mock_open()):
-        assert get_word_list(basic_app) == {
-            "a": ["to", "at", "in", "for", "into", "on"],
-        }
+        assert get_word_list(basic_app) == {"a": [4, ["to", "at", "in", "for", "into", "on"]]}
