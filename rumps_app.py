@@ -5,6 +5,7 @@ from src.app_functions.menu.change_auto_login import change_auto_login
 from src.app_functions.menu.change_countdown_statusbar import change_countdown_statusbar
 from src.app_functions.menu.change_credentials import change_credentials
 from src.app_functions.menu.change_interval import change_interval
+from src.app_functions.menu.change_strength_levels import change_strength_level
 from src.app_functions.menu.load_vocabulary import load_vocabulary
 from src.app_functions.menu.login_sequence import login
 from src.app_functions.menu.notification_prompt import notification_prompt
@@ -47,6 +48,26 @@ class DuolingoPomodoroApp(rumps.App):  # pylint: disable=too-many-instance-attri
                         "Show countdown in status bar",
                         callback=self.change_countdown_statusbar,
                     ),
+                    {
+                        "Change strength levels to be included": [
+                            rumps.MenuItem(
+                                "Level 1",
+                                callback=self.change_strength_level_1,
+                            ),
+                            rumps.MenuItem(
+                                "Level 2",
+                                callback=self.change_strength_level_2,
+                            ),
+                            rumps.MenuItem(
+                                "Level 3",
+                                callback=self.change_strength_level_3,
+                            ),
+                            rumps.MenuItem(
+                                "Level 4",
+                                callback=self.change_strength_level_4,
+                            ),
+                        ],
+                    },
                 ],
             },
             rumps.MenuItem("Stats", callback=self.stats_wrapper),
@@ -117,6 +138,38 @@ class DuolingoPomodoroApp(rumps.App):  # pylint: disable=too-many-instance-attri
             _ (rumps.rumps.MenuItem): The menu item that called the function
         """
         change_countdown_statusbar(self)
+
+    def change_strength_level_1(self, _):
+        """Wrapper for the change strength level 1 button
+
+        Args:
+            _ (rumps.rumps.MenuItem): The menu item that called the function
+        """
+        change_strength_level(self, 1)
+
+    def change_strength_level_2(self, _):
+        """Wrapper for the change strength level 2 button
+
+        Args:
+            _ (rumps.rumps.MenuItem): The menu item that called the function
+        """
+        change_strength_level(self, 2)
+
+    def change_strength_level_3(self, _):
+        """Wrapper for the change strength level 3 button
+
+        Args:
+            _ (rumps.rumps.MenuItem): The menu item that called the function
+        """
+        change_strength_level(self, 3)
+
+    def change_strength_level_4(self, _):
+        """Wrapper for the change strength level 4 button
+
+        Args:
+            _ (rumps.rumps.MenuItem): The menu item that called the function
+        """
+        change_strength_level(self, 4)
 
     def stats_wrapper(self, _):
         """Wrapper for the show statistics button
