@@ -11,8 +11,11 @@ def create_app():
         rumps.App: Basic app
     """
     app = rumps.App("TestApp")
+    app.settings = {
+        "strength_levels_to_practice": [1, 2, 3, 4],
+    }
     app.vocabulary = {
-        "a": ["to", "at", "in", "for", "into", "on"],
+        "a": [1, ["to", "at", "in", "for", "into", "on"]],
     }
     return app
 

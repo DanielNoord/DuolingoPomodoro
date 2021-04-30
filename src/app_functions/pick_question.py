@@ -13,5 +13,11 @@ def pick_question(app):
     Returns:
         bool: True or False depending on whether question was answered successfully
     """
-    question, answer = random.choice(list(app.vocabulary.items()))
-    return create_question_prompt(app, question, answer)
+    question_data = [None, None]
+    count = 0
+    while count < 10:
+        question, question_data = random.choice(list(app.vocabulary.items()))
+        if question_data[0] in app.settings["strength_levels_to_practice"]:
+            return create_question_prompt(app, question, question_data[1])
+        count += 1
+    raise Exception

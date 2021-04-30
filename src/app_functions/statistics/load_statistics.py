@@ -12,7 +12,13 @@ def load_statistics():
     """
     try:
         with open(f"{application_support('Duolingo Pomodoro')}/statistics.json", "r") as file:
-            return json.load(file)
+            current_statistics = json.load(file)
+            with open("./static/default_statistics.json", "r") as default_file:
+                default_statistics = json.load(default_file)
+                for def_key, def_value in default_statistics.items():
+                    if def_key not in current_statistics:
+                        current_statistics[def_key] = def_value
+            return current_statistics
     except FileNotFoundError:
         reset_default_statistics()
         with open(f"{application_support('Duolingo Pomodoro')}/statistics.json", "r") as file:

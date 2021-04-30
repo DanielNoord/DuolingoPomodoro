@@ -27,20 +27,22 @@ def get_word_list(app):
     save_settings(app)
 
     # Get vocab
-    data = [i["word_string"] for i in app.lingo.get_vocabulary()["vocab_overview"]]
+    data = list(app.lingo.get_vocabulary()["vocab_overview"])
     vocabulary_list = {}
     for i in range(len(data) // 1000 + 1):
         index1 = i * 1000
         index2 = (i + 1) * 1000
         if index2 > len(data) - 1:
             index2 = len(data)
-        vocabulary_list.update(
-            app.lingo.get_translations(
-                data[index1:index2],
-                source=app.settings["current_language_abbr"],
-                target=user_info["ui_language"],
-            )
+
+        translations = app.lingo.get_translations(
+            [i["word_string"] for i in data[index1:index2]],
+            source=app.settings["current_language_abbr"],
+            target=user_info["ui_language"],
         )
+        strengths = {i["word_string"]: i["strength_bars"] for i in data[index1:index2]}
+        for key in translations.keys():
+            vocabulary_list[key] = [strengths[key], translations[key]]
 
     with open(f"{application_support('Duolingo Pomodoro')}/current_vocabulary.json", "w+") as file:
         json.dump(vocabulary_list, file)

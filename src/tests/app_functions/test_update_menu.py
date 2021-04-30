@@ -12,7 +12,11 @@ def create_app():
     """
     app = rumps.App("TestApp")
     app.load_vocabulary_wrapper = "SetToVocabWrapper"
-    app.settings = {"auto_login": True, "time_in_menu_bar": True}
+    app.settings = {
+        "auto_login": True,
+        "time_in_menu_bar": True,
+        "strength_levels_to_practice": [1, 2, 3, 4],
+    }
 
     def test_callback():
         return None
@@ -28,6 +32,26 @@ def create_app():
                     "Show countdown in status bar",
                     callback=app.test_callback,
                 ),
+                {
+                    "Change strength levels to be included": [
+                        rumps.MenuItem(
+                            "Level 1",
+                            callback=app.test_callback,
+                        ),
+                        rumps.MenuItem(
+                            "Level 2",
+                            callback=app.test_callback,
+                        ),
+                        rumps.MenuItem(
+                            "Level 3",
+                            callback=app.test_callback,
+                        ),
+                        rumps.MenuItem(
+                            "Level 4",
+                            callback=app.test_callback,
+                        ),
+                    ],
+                },
             ],
         },
     ]
