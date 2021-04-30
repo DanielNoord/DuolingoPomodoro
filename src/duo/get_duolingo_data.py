@@ -27,7 +27,7 @@ def get_word_list(app):
     save_settings(app)
 
     # Get vocab
-    data = [i for i in app.lingo.get_vocabulary()["vocab_overview"]]
+    data = list(app.lingo.get_vocabulary()["vocab_overview"])
     vocabulary_list = {}
     for i in range(len(data) // 1000 + 1):
         index1 = i * 1000
