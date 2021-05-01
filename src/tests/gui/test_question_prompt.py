@@ -1,3 +1,4 @@
+import re
 import unittest.mock
 
 import pytest
@@ -27,7 +28,7 @@ def test_incorrect_answer_aborted(mocker, basic_app):
         rumps.rumps.Response(clicked=0, text=""),
     ]
     mock_class2 = mocker.patch("rumps.Window", return_value=mock_class)
-    assert not create_question_prompt(basic_app, "mela", ["apple"])
+    assert not create_question_prompt(basic_app, "mela", [re.compile("apple$")])
     assert len(mock_class2.call_args_list) == 2
     mock_class2.assert_called_with(
         message="Translate the above word in Italian",
@@ -48,7 +49,7 @@ def test_incorrect_answer_then_correct(mocker, basic_app):
         rumps.rumps.Response(clicked=1, text="apple"),
     ]
     mock_class2 = mocker.patch("rumps.Window", return_value=mock_class)
-    assert create_question_prompt(basic_app, "mela", ["apple"])
+    assert create_question_prompt(basic_app, "mela", [re.compile("apple$")])
     assert len(mock_class2.call_args_list) == 3
     mock_class2.assert_called_with(
         message="Translate the above word in Italian",
@@ -69,7 +70,7 @@ def test_incorrect_answer_then_show_then_correct(mocker, basic_app):
         rumps.rumps.Response(clicked=1, text="apple"),
     ]
     mock_class2 = mocker.patch("rumps.Window", return_value=mock_class)
-    assert create_question_prompt(basic_app, "mela", ["apple"])
+    assert create_question_prompt(basic_app, "mela", [re.compile("apple$")])
     assert len(mock_class2.call_args_list) == 3
     mock_class2.assert_called_with(
         message="Translate the above word in Italian",

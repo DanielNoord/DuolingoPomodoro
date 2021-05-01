@@ -5,5 +5,5 @@ class CredentialInputFailed(DuolingoPomodoroException):
     """Raised when there are issues with the input of new credentials, mostly when aborted
 
     Args:
-        DuolingoPomodoroException (Exception): Base excpetion class for app
+        DuolingoPomodoroException (Exception): Base excepetion class for app
     """

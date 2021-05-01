@@ -1,13 +1,13 @@
 import rumps
 
 
-def create_question_prompt(app, question, answer, incorrect=False, show_answer=False):
+def create_question_prompt(app, question, answers, incorrect=False, show_answer=False):
     """Creates the window for a duolingo question
 
     Args:
         app (rumps.App): The App object of the main app
         question (str): The question-word
-        answer (list): List of answers
+        answers (list): List of regex pattern answers
         incorrect (bool, optional): Whether a previous answer was incorrect. Defaults to False.
         show_answer (bool, optional): Whether the window should display answers. Defaults to False.
 
@@ -30,14 +30,14 @@ def create_question_prompt(app, question, answer, incorrect=False, show_answer=F
 
     # Clicked "Answer" button
     if response.clicked == 1:
-        if response.text.lower() not in answer:
-            return create_question_prompt(app, question, answer, True)
+        if not any(regex.match(response.text) for regex in answers):
+            return create_question_prompt(app, question, answers, True)
         return True
     # Clicked "Cancel" button
     if response.clicked == 0:
         return False
     # Clicked "Show answer" button
-    answer_string = "\n".join(i for i in answer)
+    answer_string = "\n".join(i.pattern[:-1].replace("|", "/") for i in answers)
     return create_question_prompt(
-        app, f"{question}\n\nAnswer(s):\n{answer_string}", answer, show_answer=True
+        app, f"{question}\n\nAnswer(s):\n{answer_string}", answers, show_answer=True
     )

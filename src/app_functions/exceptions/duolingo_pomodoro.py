@@ -2,5 +2,5 @@ class DuolingoPomodoroException(Exception):
     """Standard exception of the app
 
     Args:
-        Exception (Exception): Excpetion inherited from base python
+        Exception (Exception): Excepetion inherited from base python
     """

@@ -1,6 +1,8 @@
+import re
+
 import pytest
 import rumps
-from src.app_functions.pick_question import pick_question
+from src.app_functions.question.pick_question import pick_question
 
 
 @pytest.fixture(name="basic_app")
@@ -22,6 +24,17 @@ def create_app():
 
 def test_create_question(mocker, basic_app):
     """Check if question is created correctly"""
-    mock_function = mocker.patch("src.app_functions.pick_question.create_question_prompt")
+    mock_function = mocker.patch("src.app_functions.question.pick_question.create_question_prompt")
     pick_question(basic_app)
-    mock_function.assert_called_once_with(basic_app, "a", ["to", "at", "in", "for", "into", "on"])
+    mock_function.assert_called_once_with(
+        basic_app,
+        "a",
+        [
+            re.compile("to$"),
+            re.compile("at$"),
+            re.compile("in$"),
+            re.compile("for$"),
+            re.compile("into$"),
+            re.compile("on$"),
+        ],
+    )

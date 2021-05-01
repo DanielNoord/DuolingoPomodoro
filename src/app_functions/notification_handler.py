@@ -1,4 +1,4 @@
-from src.app_functions.pick_question import pick_question
+from src.app_functions.question.pick_question import pick_question
 from src.app_functions.statistics import save_statistics
 
 
