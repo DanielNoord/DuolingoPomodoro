@@ -6,5 +6,5 @@ class LoginFailed(DuolingoPomodoroException):
     """Raised when there are issues with login
 
     Args:
-        DuolingoPomodoroException (Exception): Base excpetion class for app
+        DuolingoPomodoroException (Exception): Base excepetion class for app
     """
