@@ -1,6 +1,6 @@
 import pytest
 import rumps
-from src.app_functions.pick_question import pick_question
+from src.app_functions.question.pick_question import pick_question
 
 
 @pytest.fixture(name="basic_app")
